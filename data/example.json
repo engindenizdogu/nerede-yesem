@@ -1,0 +1,35 @@
+[
+    {
+      "name": "Antilop Cafe - Restaurant",
+      "description": "Antilop Brasserie",
+      "address": "Zekeriyaköy Mahallesi Garanti Koza Çarşı Vişne Blokları No:6 34450 Sarıyer İstanbul",
+      "phone": "02122029575",
+      "website": "",
+      "rating": 4.4,
+      "reviews": 376,
+      "lat": 41.20811055912532,
+      "lng": 29.021082891197672
+    },
+    {
+      "name": "Loop Food",
+      "description": "Dessert shop",
+      "address": "Prof Dr Oktay Zekeriyaköy Sinanoğlu Cad No:6/B 34450 Sarıyer İstanbul",
+      "phone": "05395973380",
+      "website": "https://loopfoodturkiye.com/",
+      "rating": 4.5,
+      "reviews": 79,
+      "lat": 41.20261368803042,
+      "lng": 29.03492358138013
+    },
+    {
+      "name": "Caffè Nero",
+      "description": "Kahve Dükkanı",
+      "address": "Ormanada Sitesi Uskumruköy Kilyos No:246 34450 Sarıyer İstanbul",
+      "phone": "05397233839",
+      "website": "https://www.caffenero.com/tr/stores",
+      "rating": 4.9,
+      "reviews": 8,
+      "lat": 41.21266242886571,
+      "lng": 29.03807845198715
+    }
+]
