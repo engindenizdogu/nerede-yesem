@@ -51,7 +51,7 @@ src/
 
 3. Open your web browser and navigate to:
    ```
-   http://localhost:8000/src/html/index.html
+   http://localhost:8080/src/html/index.html
    ```
 
 ## Usage
