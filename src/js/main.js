@@ -31,7 +31,7 @@ const group2Icon = L.divIcon({
 });
 
 // Fetch and load the JSON data
-fetch('MapJS/data/example.json')
+fetch('data/example.json')
     .then(response => {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
