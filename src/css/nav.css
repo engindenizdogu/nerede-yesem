@@ -40,6 +40,12 @@ nav {
     background-color: var(--accent-color);
 }
 
+/* Current page highlighting */
+[aria-current="page"] {
+    background-color: var(--accent-color);
+    font-weight: bold;
+}
+
 @media (max-width: 768px) {
     .nav-container {
         flex-direction: column;
