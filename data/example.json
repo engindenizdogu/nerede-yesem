@@ -31,5 +31,16 @@
       "reviews": 8,
       "lat": 41.21266242886571,
       "lng": 29.03807845198715
+    },
+    {
+      "name": "Pinoli Italian Kitchen",
+      "description": "İtalyan restoranı",
+      "address": "Bıyıklı Mehmet Paşa Sk. Aslanlı Apt. No 1/1 Etiler Çamlık Mevii, 34340 Beşiktaş",
+      "phone": "02122636695",
+      "website": "",
+      "rating": 4.3,
+      "reviews": 237,
+      "lat": 41.08148886617348,
+      "lng": 29.03597286805023
     }
 ]

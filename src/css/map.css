@@ -9,4 +9,16 @@
         height: calc(100vh - 100px);
         margin-top: 100px;
     }
-} 
+}
+
+.leaflet-control-layers label,
+.leaflet-control-layers .leaflet-control-layers-label,
+.leaflet-control-layers label span {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.leaflet-top .leaflet-control {
+    top: 1em !important;
+    right: 0.5em !important;
+}

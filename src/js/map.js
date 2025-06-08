@@ -4,30 +4,42 @@ var map = L.map('map', {
     zoom: 8
 });
 
-// Add OpenStreetMap tiles
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+/** Default map style
+ // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 15,
     minZoom: 3,
     attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+ *
+ * Possible tyle alternatives:
+ *  Thunderforest.Neighbourhood
+ */
+
+// Tile style: CartoDB.VoyagerLabelsUnder from https://leaflet-extras.github.io/leaflet-providers/preview/
+L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 20
 }).addTo(map);
 
 // Create layer groups for different rating ranges
 const group1 = L.layerGroup().addTo(map); // 4.0 - 4.5, good rated
 const group2 = L.layerGroup().addTo(map); // 4.5 - 5.0, best rated
 
-// Create custom icons for different rating groups
-const group1Icon = L.divIcon({
-    className: 'custom-div-icon',
-    html: `<div style="background-color: #0074e1; width: 20px; height: 20px; border-radius: 50%; border: 3px solid white;"></div>`,
-    iconSize: [16, 16],
-    iconAnchor: [8, 8]
+// Define two default-style icons with different colors
+const group1Icon = L.icon({
+    iconUrl: 'src/assets/marker-icon-iyi.svg',
+    iconSize:     [36, 36],
+    iconAnchor:   [18, 36],
+    popupAnchor:  [0, -36]
 });
 
-const group2Icon = L.divIcon({
-    className: 'custom-div-icon',
-    html: `<div style="background-color: #CB2B3E; width: 20px; height: 20px; border-radius: 50%; border: 3px solid white;"></div>`,
-    iconSize: [16, 16],
-    iconAnchor: [8, 8]
+const group2Icon = L.icon({
+    iconUrl: 'src/assets/marker-icon-super.svg',
+    iconSize:     [36, 36],
+    iconAnchor:   [18, 36],
+    popupAnchor:  [0, -36]
 });
 
 // Fetch and load the JSON data
@@ -51,16 +63,39 @@ fetch('data/example.json')
                 <strong>Rating:</strong> ${location.rating} (${location.reviews} reviews)
             `;
             
-            // Create marker with appropriate icon based on rating, use this line if you want to use the default marker icon
-            //const marker = L.marker([location.lat, location.lng]);
-
-            // Create marker with appropriate icon based on rating, use this line if you want to use the custom icon
+            // Create marker with appropriate icon based on rating
             const marker = L.marker([location.lat, location.lng], {
                 icon: location.rating > 4.5 ? group2Icon : group1Icon
             });
 
-            // Bind popup to marker
+            // Bind popup to marker (show on hover, stay open on click)
             marker.bindPopup(popupContent);
+
+            // Pin on click feature commented out but not deleted for reference
+            /* let isPopupPinned = false; */
+
+            // Show popup on hover, stay open on click
+            marker.on('mouseover', function (e) {
+                    this.openPopup();
+            });
+            /*
+            // Close popup on 'mouseout' if not pinned
+            marker.on('mouseout', function (e) { 
+                if (!isPopupPinned) {
+                    this.closePopup();
+                }
+            });
+            // Pin popup on click
+            marker.on('click', function (e) {
+                isPopupPinned = true;
+                this.openPopup();
+            });
+            */
+            // Unpin popup on map click
+            map.on('click', function (e) {
+                /* isPopupPinned = false; */
+                marker.closePopup();
+            });
             
             // Add marker to appropriate layer group
             if (location.rating > 4.5) {
@@ -72,8 +107,8 @@ fetch('data/example.json')
 
         // Add layer control
         const overlayMaps = {
-            "İyi Restoran (4.0-4.5)": group1,
-            "Süper Restoran (4.5-5.0)": group2
+            "İyi restoran 🤤": group1,
+            "Süper restoran 🤩": group2
         };
         
         L.control.layers(null, overlayMaps, {collapsed: false}).addTo(map);

@@ -5,29 +5,38 @@ A single-page web application that displays an interactive map using Leaflet.js,
 ## Features
 
 - Interactive map with location markers
-- Detailed location information in popups
+- Detailed location information in popups (shown on hover, can be pinned by click)
 - Responsive design for mobile and desktop
-- Navigation menu with Home, FAQ, and Contact pages
+- Navigation menu with Home, FAQ, Blog, and Contact pages
 - Contact form for user inquiries
 - FAQ section with common questions
+- Minimal, modern map style using CartoDB VoyagerLabelsUnder tiles
 
 ## Project Structure
 
 ```
 src/
-├── html/           # HTML files
-│   ├── index.html  # Main page with map
-│   ├── faq.html    # FAQ page
-│   └── contact.html# Contact page
+├── html/           # HTML files and components
+│   ├── index.html      # Main page with map
+│   ├── faq.html        # FAQ page
+│   ├── contact.html    # Contact page
+│   └── components/     # Reusable HTML components
+│       └── nav.html    # Navigation bar component
 ├── css/            # CSS files
-│   ├── base.css    # Common styles
-│   ├── nav.css     # Navigation styles
-│   ├── map.css     # Map-specific styles
-│   ├── forms.css   # Form styles
-│   └── faq.css     # FAQ-specific styles
+│   ├── base.css        # Common styles
+│   ├── nav.css         # Navigation styles
+│   ├── map.css         # Map-specific styles
+│   ├── forms.css       # Form styles
+│   └── faq.css         # FAQ-specific styles
 ├── js/             # JavaScript files
-│   └── script.js   # Map initialization and functionality
-└── assets/         # For images, icons, etc.
+│   ├── map.js          # Map initialization and functionality
+│   └── components.js   # Loads HTML components (e.g., navigation)
+├── assets/         # For images, icons, etc.
+│   ├── marker-icon-iyi.svg   # Custom marker icon for "İyi restoran"
+│   ├── marker-icon-super.svg # Custom marker icon for "Süper restoran"
+│   └── tab-icon.png          # Favicon/logo
+└── data/
+    └── example.json   # Example location data
 ```
 
 ## Prerequisites
@@ -51,7 +60,7 @@ src/
 
 3. Open your web browser and navigate to:
    ```
-   http://localhost:8080/src/html/index.html
+   http://localhost:8000/src/html/index.html
    ```
 
 ## Usage
@@ -59,7 +68,7 @@ src/
 - **Map Navigation**:
   - Drag to pan
   - Scroll to zoom
-  - Click markers to view location details
+  - Hover over markers to view location details
 
 - **Location Information**:
   - Name
@@ -95,6 +104,15 @@ src/
 - Main color scheme is defined in `base.css` using CSS variables
 - Component-specific styles are in their respective CSS files
 
+### Map Tiles
+
+- The map uses the [CartoDB VoyagerLabelsUnder](https://leaflet-extras.github.io/leaflet-providers/preview/) tile style for a minimal, modern look.
+- You can change the tile style in `src/js/map.js` if you want a different appearance.
+
+### Navigation Component
+
+- The navigation bar is managed as a reusable HTML component (`src/html/components/nav.html`) and loaded dynamically on each page.
+
 ## Browser Support
 
 - Chrome (latest)
@@ -105,4 +123,5 @@ src/
 ## Acknowledgments
 
 - [Leaflet.js](https://leafletjs.com/) for the interactive map functionality
-- [OpenStreetMap](https://www.openstreetmap.org/) for map tiles 
+- [CartoDB Voyager](https://carto.com/basemaps/) for map tiles
+- [OpenStreetMap](https://www.openstreetmap.org/) for map data 

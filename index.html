@@ -3,37 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5623653984215626"
-     crossorigin="anonymous"></script>
-    <title>NeredeYesem?</title>
+    <title>NeredeYesem? - İyi Restoran Rehberin</title>
     
-    <!-- Include common head elements -->
+    <!-- Styling -->
     <link rel="stylesheet" href="src/css/base.css">
     <link rel="stylesheet" href="src/css/nav.css">
+    <link rel="stylesheet" href="src/css/map.css">
     <link rel="icon" type="image/png" href="src/assets/tab-icon.png">
-    <!--<link rel="icon" type="image/png" sizes="32x32" href="src/assets/favicon-32x32.png"> -->
-    <!--<link rel="icon" type="image/png" sizes="16x16" href="src/assets/favicon-16x16.png"> -->
     
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
           crossorigin=""/>
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="src/css/map.css">
+
+    <!-- Google Ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5623653984215626"
+        crossorigin="anonymous"></script>
 </head>
 <body>
-    <!-- Include common navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo">NeredeYesem?</a>
-            <div class="nav-links">
-                <a href="index.html" aria-current="page">Home</a>
-                <a href="faq.html">FAQ</a>
-                <a href="contact.html">Contact</a>
-            </div>
-        </div>
-    </nav>
+    <!-- Navigation will be loaded here -->
+    <div id="nav-container"></div>
 
     <div id="map"></div>
 
@@ -43,6 +32,7 @@
             crossorigin=""></script>
     
     <!-- Custom JavaScript -->
-    <script src="src/js/main.js"></script>
+    <script src="src/js/components.js"></script>
+    <script src="src/js/map.js"></script>
 </body>
 </html>
