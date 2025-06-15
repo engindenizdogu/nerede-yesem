@@ -22,8 +22,5 @@ Thumbs.db
 *.log
 npm-debug.log* 
 
-# Ignore development logs and vlogs
 devLogs/
-
-# Ignore reference documentation
 docs/
