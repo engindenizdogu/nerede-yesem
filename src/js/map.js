@@ -206,27 +206,99 @@ fetch('../data/nearby_search_results_26062025_cleaned.csv')
             });
         });
 
-        // Add layer control
+        // Custom filtering function with AND logic
+        function updateVisibleMarkers() {
+            allMarkers.forEach(marker => {
+                marker.remove(); // Remove all markers from map
+            });
+
+            markerData.forEach(data => {
+                const { marker, ratingCategory, primaryType } = data;
+                
+                // Check if marker matches any active rating filter
+                const matchesRating = !activeRatingFilters.size || (ratingCategory && activeRatingFilters.has(ratingCategory));
+                
+                // Check if marker matches any active type filter
+                const matchesType = !activeTypeFilters.size || activeTypeFilters.has(primaryType);
+                
+                // Show marker if it matches BOTH active filters (AND logic)
+                if (matchesRating && matchesType) {
+                    marker.addTo(map);
+                }
+            });
+        }
+
+        // Initialize visible markers
+        updateVisibleMarkers();
+
+        // Create custom layer controls
         const ratingOverlays = {
-            "İyi restoran 🤤": group1,
-            "Süper restoran 🤩": group2
+            "İyi restoran 🤤": { name: "İyi restoran 🤤", type: "rating" },
+            "Süper restoran 🤩": { name: "Süper restoran 🤩", type: "rating" }
         };
 
         const typeOverlays = Object.entries(typeGroups).reduce((acc, [type, group]) => {
-            acc[type] = group;
+            acc[type] = { name: type, type: "category" };
             return acc;
         }, {});
 
-        // Create separate layer controls for ratings and types
-        const ratingControl = L.control.layers(null, ratingOverlays, {
+        // Create custom layer control for ratings
+        const ratingControl = L.control.layers(null, {}, {
             collapsed: false,
             position: 'topright'
         }).addTo(map);
 
-        const typeControl = L.control.layers(null, typeOverlays, {
+        // Add rating checkboxes
+        Object.entries(ratingOverlays).forEach(([key, value]) => {
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.checked = activeRatingFilters.has(value.name);
+            checkbox.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    activeRatingFilters.add(value.name);
+                } else {
+                    activeRatingFilters.delete(value.name);
+                }
+                updateVisibleMarkers();
+            });
+
+            const label = document.createElement('label');
+            label.appendChild(checkbox);
+            label.appendChild(document.createTextNode(' ' + value.name));
+            
+            const div = document.createElement('div');
+            div.appendChild(label);
+            ratingControl.getContainer().appendChild(div);
+        });
+
+        // Create custom layer control for types
+        const typeControl = L.control.layers(null, {}, {
             collapsed: false,
             position: 'topright'
         }).addTo(map);
+
+        // Add type checkboxes
+        Object.entries(typeOverlays).forEach(([key, value]) => {
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.checked = activeTypeFilters.has(value.name);
+            checkbox.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    activeTypeFilters.add(value.name);
+                } else {
+                    activeTypeFilters.delete(value.name);
+                }
+                updateVisibleMarkers();
+            });
+
+            const label = document.createElement('label');
+            label.appendChild(checkbox);
+            label.appendChild(document.createTextNode(' ' + value.name));
+            
+            const div = document.createElement('div');
+            div.appendChild(label);
+            typeControl.getContainer().appendChild(div);
+        });
 
         // Fit the map bounds to show all markers
         const bounds = data.map(location => [parseFloat(location.lat), parseFloat(location.lon)]);
