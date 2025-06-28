@@ -120,6 +120,25 @@ src/
 - Safari (latest)
 - Edge (latest)
 
+## Hostinger DNS Settings
+| Type     | Name    | Priority | Content              | TTL           |
+| -------- | ------- | -------  | -------              | -------       |
+| CNAME    | www     | 0        | eniyirestoranlar.com | 14400         |
+| A        | @       | 0        | 185.199.108.153      | 14400         |
+| A        | @       | 0        | 185.199.109.153      | 14400         |
+| A        | @       | 0        | 185.199.110.153      | 14400         |
+| A        | @       | 0        | 185.199.111.153      | 14400         |
+
+or
+
+| Type     | Name    | Priority | Content              | TTL           |
+| -------- | ------- | -------  | -------              | -------       |
+| CNAME    | www     | 0        | eniyirestoranlar.com | 14400         |
+| AAAA     | @       | 0        | 2606:50c0:8000::153  | 14400         |
+| AAAA     | @       | 0        | 2606:50c0:8001::153  | 14400         |
+| AAAA     | @       | 0        | 2606:50c0:8002::153  | 14400         |
+| AAAA     | @       | 0        | 2606:50c0:8003::153  | 14400         |
+
 ## Acknowledgments
 
 - [Leaflet.js](https://leafletjs.com/) for the interactive map functionality
