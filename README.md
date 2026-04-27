@@ -2,6 +2,8 @@
 
 A single-page web application that displays an interactive map using Leaflet.js, featuring location markers with detailed information.
 
+<img width="2893" height="1561" alt="image" src="https://github.com/user-attachments/assets/fdf9663c-fec5-491a-807d-59d563f34da4" />
+
 ## Features
 
 - Interactive map with location markers
